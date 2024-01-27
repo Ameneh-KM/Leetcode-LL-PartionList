@@ -1,7 +1,3 @@
-import java.util.HashSet;
-import java.util.Set;
-
-
 public class LinkedList {
 
     private Node head;
@@ -32,24 +28,17 @@ public class LinkedList {
 
     public void printList() {
         Node temp = head;
-        while (temp != null) {
-            System.out.println(temp.value);
-            temp = temp.next;
-        }
-    }
-
-    public void printAll() {
-        if (length == 0) {
-            System.out.println("Head: null");
-        } else {
-            System.out.println("Head: " + head.value);
-        }
-        System.out.println("Length:" + length);
-        System.out.println("\nLinked List:");
-        if (length == 0) {
+        if (temp == null) {
             System.out.println("empty");
         } else {
-            printList();
+            while (temp != null) {
+                System.out.print(temp.value);
+                temp = temp.next;
+                if (temp != null) {
+                    System.out.print(" -> ");
+                }
+            }
+            System.out.println();
         }
     }
     
@@ -60,7 +49,7 @@ public class LinkedList {
     
     public void append(int value) {
         Node newNode = new Node(value);
-        if (head == null) {
+        if (length == 0) {
             head = newNode;
         } else {
             Node current = head;
@@ -71,21 +60,15 @@ public class LinkedList {
         }
         length++;
     }
-    
-    // WRITE THE REMOVEDUPLICATES METHOD HERE //
-     public void removeDuplicates() {
-        Set<Integer> values = new HashSet<>();
-        Node previous = null;
+    public int binaryToDecimal(){
+ int num = 0;
         Node current = head;
         while (current != null) {
-            if (values.contains(current.value)) {
-                previous.next = current.next;
-                length -= 1;
-            } else {
-                values.add(current.value);
-                previous = current;
-            }
+            num = num * 2 + current.value;
             current = current.next;
         }
+        return num;
     }
 }
+
+
