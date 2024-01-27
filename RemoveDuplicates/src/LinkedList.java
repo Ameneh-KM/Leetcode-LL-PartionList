@@ -1,3 +1,7 @@
+import java.util.HashSet;
+import java.util.Set;
+
+
 public class LinkedList {
 
     private Node head;
@@ -67,33 +71,21 @@ public class LinkedList {
         }
         length++;
     }
-
-
-    public void partitionList(int x) {
-        if (head == null) return;
- 
-        Node dummy1 = new Node(0);
-        Node dummy2 = new Node(0);
-        Node prev1 = dummy1;
-        Node prev2 = dummy2;
+    
+    // WRITE THE REMOVEDUPLICATES METHOD HERE //
+     public void removeDuplicates() {
+        Set<Integer> values = new HashSet<>();
+        Node previous = null;
         Node current = head;
- 
         while (current != null) {
-            if (current.value < x) {
-                prev1.next = current;
-                prev1 = current;
+            if (values.contains(current.value)) {
+                previous.next = current.next;
+                length -= 1;
             } else {
-                prev2.next = current;
-                prev2 = current;
+                values.add(current.value);
+                previous = current;
             }
             current = current.next;
         }
- 
-        prev2.next = null;
-        prev1.next = dummy2.next;
- 
-        head = dummy1.next;
-    }  
+    }
 }
-
-
